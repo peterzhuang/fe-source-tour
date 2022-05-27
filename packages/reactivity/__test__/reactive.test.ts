@@ -5,10 +5,12 @@ describe('reactive test suite', () => {
     it('test reactive and effect', () => {
        
         let obj = reactive({
-            name: 'yuchuan'
+            name: 'yuchuan',
+            age: 20
         })
 
         let dummy
+        let dummyAge
         effect(() => {
             dummy = obj.name
         })
@@ -20,5 +22,12 @@ describe('reactive test suite', () => {
 
         obj.name = 'caro'
         expect(dummy).toBe('caro')
+
+        effect(() => {
+            dummyAge = obj.age
+        })
+
+        obj.age = 40
+        expect(dummyAge).toBe(40)
     })
 })
